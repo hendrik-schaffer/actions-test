@@ -14,7 +14,6 @@ jobs:
         run: |
           # mv "${{ runner.tool_cache }}" "${{ runner.tool_cache }}.old"
           # mkdir -p "${{ runner.tool_cache }}"
-          mv "${{ env.AGENT_TOOLSDIRECTORY }}" "${{ env.AGENT_TOOLSDIRECTORY }}.old"
           mkdir -p "${{ env.AGENT_TOOLSDIRECTORY }}"
       - name: Setup Python 3.9
         uses: actions/setup-python@v4
