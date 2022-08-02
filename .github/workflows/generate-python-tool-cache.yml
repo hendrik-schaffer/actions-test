@@ -5,8 +5,6 @@ on:
 jobs:
   
   upload_tool_cache:
-    env:
-      AGENT_TOOLSDIRECTORY: /home/runner/actions-runner/_work/_tool/
     runs-on: ubuntu-20.04
     steps:
       - name: Clear any existing tool cache
