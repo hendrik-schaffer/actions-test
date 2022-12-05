@@ -9,5 +9,5 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6'
-      - run: set
+      - run: Get-ChildItem Env:
       - run: whoami
