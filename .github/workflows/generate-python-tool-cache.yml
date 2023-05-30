@@ -5,7 +5,10 @@ on:
 jobs:
   
   upload_tool_cache:
-    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        runner: [ubuntu-20.04, ubuntu-22.04]
+    runs-on: ${{ matrix.runner }}
     env:
       AGENT_TOOLSDIRECTORY: /home/runner/actions-runner/_work/_tool/
       
@@ -34,8 +37,8 @@ jobs:
       - name: Archive tool cache
         run: |
           cd "${{ env.AGENT_TOOLSDIRECTORY }}"
-          tar -czf tool_cache.tar.gz *
+          tar -czf "python_cache_${{ matrix_runner}}.tar.gz *
       - name: Upload tool cache artifact
         uses: actions/upload-artifact@v3
         with:
-          path: ${{ env.AGENT_TOOLSDIRECTORY }}/tool_cache.tar.gz
+          path: ${{ env.AGENT_TOOLSDIRECTORY }}/python_cache_${{ matrix_runner}}.tar.gz
