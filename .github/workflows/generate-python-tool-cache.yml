@@ -41,4 +41,5 @@ jobs:
       - name: Upload tool cache artifact
         uses: actions/upload-artifact@v3
         with:
-          path: ${{ env.AGENT_TOOLSDIRECTORY }}/python_cache_${{ matrix.runner}}.tar.gz
+          name: ${{ matrix.runner }}-python-cache
+          path: ${{ env.AGENT_TOOLSDIRECTORY }}/python_cache_${{ matrix.runner }}.tar.gz
