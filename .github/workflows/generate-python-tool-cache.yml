@@ -37,8 +37,8 @@ jobs:
       - name: Archive tool cache
         run: |
           cd "${{ env.AGENT_TOOLSDIRECTORY }}"
-          tar -czf "python_cache_${{ matrix_runner}}.tar.gz *
+          tar -czf "python_cache_${{ matrix.runner}}.tar.gz *
       - name: Upload tool cache artifact
         uses: actions/upload-artifact@v3
         with:
-          path: ${{ env.AGENT_TOOLSDIRECTORY }}/python_cache_${{ matrix_runner}}.tar.gz
+          path: ${{ env.AGENT_TOOLSDIRECTORY }}/python_cache_${{ matrix.runner}}.tar.gz
