@@ -4,25 +4,46 @@ on:
   
 jobs:
   upload_tool_cache:
-    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        runner: [ubuntu-20.04, ubuntu-22.04]
+    runs-on: ${{ matrix.runner }}
     steps:
       - name: Clear any existing tool cache
         run: |
           mv "${{ runner.tool_cache }}" "${{ runner.tool_cache }}.old"
           mkdir -p "${{ runner.tool_cache }}"
+      
       - name: Setup Node 10
         uses: actions/setup-node@v3
         with:
-          node-version: 10.x
+          node-version: 10
+      
       - name: Setup Node 12
         uses: actions/setup-node@v3
         with:
-          node-version: 12.x
+          node-version: 12
+      
+      - name: Setup Node 14
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          
+      - name: Setup Node 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      
+      - name: Setup Node 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18         
       - name: Archive tool cache
         run: |
           cd "${{ runner.tool_cache }}"
-          tar -czf tool_cache.tar.gz *
+          tar -czf "node_cache_${{ matrix.runner}}.tar.gz" *
       - name: Upload tool cache artifact
         uses: actions/upload-artifact@v3
         with:
-          path: ${{runner.tool_cache}}/tool_cache.tar.gz
+          name: ${{ matrix.runner }}-node-cache
+          path: ${{ env.AGENT_TOOLSDIRECTORY }}/node_cache_${{ matrix.runner }}.tar.gz
