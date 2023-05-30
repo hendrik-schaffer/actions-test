@@ -8,11 +8,14 @@ jobs:
       matrix:
         runner: [ubuntu-20.04, ubuntu-22.04]
     runs-on: ${{ matrix.runner }}
+    env:
+      AGENT_TOOLSDIRECTORY: /home/runner/actions-runner/_work/_tool/
     steps:
       - name: Clear any existing tool cache
         run: |
-          mv "${{ runner.tool_cache }}" "${{ runner.tool_cache }}.old"
-          mkdir -p "${{ runner.tool_cache }}"
+          # mv "${{ runner.tool_cache }}" "${{ runner.tool_cache }}.old"
+          # mkdir -p "${{ runner.tool_cache }}"
+          mkdir -p "${{ env.AGENT_TOOLSDIRECTORY }}"
       
       - name: Setup Node 10
         uses: actions/setup-node@v3
@@ -40,7 +43,7 @@ jobs:
           node-version: 18         
       - name: Archive tool cache
         run: |
-          cd "${{ runner.tool_cache }}"
+          cd "${{ env.AGENT_TOOLSDIRECTORY }}"
           tar -czf "node_cache_${{ matrix.runner}}.tar.gz" *
       - name: Upload tool cache artifact
         uses: actions/upload-artifact@v3
