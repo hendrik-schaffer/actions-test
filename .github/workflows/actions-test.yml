@@ -5,6 +5,10 @@ jobs:
   check-bats-version:
     runs-on: dependabot
     steps:
+      - name: Debug
+        run: |
+          whoami
+          ls -al
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
