@@ -9,7 +9,8 @@ jobs:
         run: |
           whoami
           id
-          tree /home/runner
+          # tree /home/runner
+          printenv
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
