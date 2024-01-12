@@ -12,9 +12,10 @@ jobs:
           # tree /home/runner
           printenv
       
-      - name: Debug
+      - name: Debug users
         run: |
           sudo cat /etc/sudoers
+          ls -al /etc/sudoers
           
       - uses: actions/checkout@v3
       
