@@ -15,7 +15,7 @@ jobs:
       - name: Debug users
         run: |
           sudo cat /etc/sudoers
-          sudo ls -al /etc/sudoers.d
+          sudo cat /etc/sudoers.d/runner
           
       - uses: actions/checkout@v3
       
