@@ -11,6 +11,7 @@ jobs:
           id
           # tree /home/runner
           printenv
+          echo $PATH
       
       - name: Debug users
         run: |
