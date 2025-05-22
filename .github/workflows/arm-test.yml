@@ -23,7 +23,7 @@ jobs:
   
   debug-amd:
     name: debug-amd
-    runs-on: ubuntu-22.04-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: checkout
