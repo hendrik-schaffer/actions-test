@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  debug:
-    name: debug
+  debug-arm:
+    name: debug-arm
     runs-on: ubuntu-22.04-arm
 
     steps:
@@ -20,4 +20,22 @@ jobs:
       - name: show toolcache dir
         run: |
           ls -Ral /opt/hostedtoolcache
+  
+  debug-amd:
+    name: debug-amd
+    runs-on: ubuntu-22.04-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: debug
+        run: | 
+          printenv
+          whoami
+
+      - name: show toolcache dir
+        run: |
+          ls -Ral /opt/hostedtoolcache
+
         
