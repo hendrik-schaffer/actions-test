@@ -19,5 +19,5 @@ jobs:
 
       - name: show toolcache dir
         run: |
-          ls -al /opt/hostedtoolcache
+          ls -Ral /opt/hostedtoolcache
         
